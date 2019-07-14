@@ -22,7 +22,7 @@ app.get('/api/v1/coworkers', (req, res) => {
 app.post('/api/v1/coworkers', (req, res) => {
   const newCoWorker = req.body;
 
-  for (let requiredParameter of ['name', 'location', 'bio']) {
+  for (let requiredParameter of ['id', 'image', 'name', 'role', 'location']) {
     if (!newCoWorker[requiredParameter]) {
       return res.status(422).json({
         message: `You are missing a required parameter of ${requiredParameter}`
