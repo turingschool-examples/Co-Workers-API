@@ -3,7 +3,7 @@ const cors = require('express-cors');
 const bodyParser = require('body-parser');
 const port = process.env.PORT || 3001;
 const app = express();
-const coWorkers = require('./co-workers.js');
+const { coWorkers } = require('./co-workers.js');
 
 app.locals.title = 'Co-Workers API';
 app.locals.coWorkers = coWorkers
@@ -37,7 +37,7 @@ app.post('/api/v1/coworkers', (req, res) => {
 
 app.delete('/api/v1/coworkers/:id', (req, res) => {
   const { id } = req.params;
-  const match = app.locals.CoWorkers.find(coworker => coworker.id == id);
+  const match = app.locals.coWorkers.find(coworker => coworker.id == id);
 
   if (!match) {
     return res.status(404).json({
@@ -45,9 +45,9 @@ app.delete('/api/v1/coworkers/:id', (req, res) => {
     });
   }
 
-  const filteredCoWorkers = app.locals.CoWorkers.filter(coworker => coworker.id != id);
+  const filteredCoWorkers = app.locals.coWorkers.filter(coworker => coworker.id != id);
 
-  app.locals.CoWorkers = filteredCoWorkers;
+  app.locals.coWorkers = filteredCoWorkers;
 
   return res.sendStatus(204);
 });
