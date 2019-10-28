@@ -49,7 +49,7 @@ app.delete('/api/v1/coworkers/:id', (req, res) => {
 
   app.locals.coWorkers = filteredCoWorkers;
 
-  return res.sendStatus(204);
+  return res.status(202).json(app.locals.coWorkers);
 });
 
 app.listen(port, () => {
